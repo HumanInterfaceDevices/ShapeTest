@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShapeTest.Android", "ShapeT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShapeTest.iOS", "ShapeTest\ShapeTest.iOS\ShapeTest.iOS.csproj", "{2C2606A9-4565-4CA3-AC4B-449C24C86B3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShapeTest", "ShapeTest\ShapeTest\ShapeTest.csproj", "{5AA99D3C-4FDC-4054-A2EC-E47ED31D4897}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShapeTest", "ShapeTest\ShapeTest\ShapeTest.csproj", "{5AA99D3C-4FDC-4054-A2EC-E47ED31D4897}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -82,8 +82,6 @@ Global
 		{1B88B2FD-9DB5-40E4-962A-CE50FF08B3A8}.Debug|x86.Build.0 = Debug|Any CPU
 		{1B88B2FD-9DB5-40E4-962A-CE50FF08B3A8}.Debug|x86.Deploy.0 = Debug|Any CPU
 		{1B88B2FD-9DB5-40E4-962A-CE50FF08B3A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1B88B2FD-9DB5-40E4-962A-CE50FF08B3A8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1B88B2FD-9DB5-40E4-962A-CE50FF08B3A8}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{1B88B2FD-9DB5-40E4-962A-CE50FF08B3A8}.Release|ARM.ActiveCfg = Release|Any CPU
 		{1B88B2FD-9DB5-40E4-962A-CE50FF08B3A8}.Release|ARM.Build.0 = Release|Any CPU
 		{1B88B2FD-9DB5-40E4-962A-CE50FF08B3A8}.Release|ARM.Deploy.0 = Release|Any CPU
@@ -118,7 +116,6 @@ Global
 		{2C2606A9-4565-4CA3-AC4B-449C24C86B3B}.Debug|x86.Build.0 = Debug|iPhoneSimulator
 		{2C2606A9-4565-4CA3-AC4B-449C24C86B3B}.Debug|x86.Deploy.0 = Debug|iPhoneSimulator
 		{2C2606A9-4565-4CA3-AC4B-449C24C86B3B}.Release|Any CPU.ActiveCfg = Release|iPhoneSimulator
-		{2C2606A9-4565-4CA3-AC4B-449C24C86B3B}.Release|Any CPU.Build.0 = Release|iPhoneSimulator
 		{2C2606A9-4565-4CA3-AC4B-449C24C86B3B}.Release|Any CPU.Deploy.0 = Release|iPhoneSimulator
 		{2C2606A9-4565-4CA3-AC4B-449C24C86B3B}.Release|ARM.ActiveCfg = Release|iPhoneSimulator
 		{2C2606A9-4565-4CA3-AC4B-449C24C86B3B}.Release|ARM.Build.0 = Release|iPhoneSimulator
@@ -154,7 +151,6 @@ Global
 		{5AA99D3C-4FDC-4054-A2EC-E47ED31D4897}.Debug|x86.Build.0 = Debug|Any CPU
 		{5AA99D3C-4FDC-4054-A2EC-E47ED31D4897}.Debug|x86.Deploy.0 = Debug|Any CPU
 		{5AA99D3C-4FDC-4054-A2EC-E47ED31D4897}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5AA99D3C-4FDC-4054-A2EC-E47ED31D4897}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5AA99D3C-4FDC-4054-A2EC-E47ED31D4897}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{5AA99D3C-4FDC-4054-A2EC-E47ED31D4897}.Release|ARM.ActiveCfg = Release|Any CPU
 		{5AA99D3C-4FDC-4054-A2EC-E47ED31D4897}.Release|ARM.Build.0 = Release|Any CPU

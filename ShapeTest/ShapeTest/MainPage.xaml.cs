@@ -28,7 +28,6 @@ namespace ShapeTest
 
 		public static List<ShapeItem> shapeList = new List<ShapeItem>();
 
-
 		public const double pi = Math.PI;
 
 		private void CanvasView_PaintSurface(object sender, SKPaintSurfaceEventArgs e)
@@ -36,52 +35,51 @@ namespace ShapeTest
 			//Prepare canvas
 			SKSurface surface = e.Surface;
 			SKCanvas canvas = surface.Canvas;
-
 			// canvas transforms
 			int width = e.Info.Width;
 			int height = e.Info.Height;
 			//canvas.Translate(width / 2, height / 2);
 			//canvas.Scale(Math.Min(width / 210f, height / 520f));
 			canvas.Scale(3);
-
 			// create and draw the screen
 			DrawScreen(canvas);
 		}
 		private static void DrawScreen(SKCanvas canvas)
 		{
-			
+			// test items
 			shapeList.Add(new ShapeItem());
-			shapeList.Add(new ShapeItem());
-			shapeList.Add(new ShapeItem());
-			shapeList.Add(new ShapeItem());
+			//shapeList.Add(new ShapeItem());
+			//shapeList.Add(new ShapeItem());
+			//shapeList.Add(new ShapeItem());
 
 			double[] location = new double[2];
 			location[0] = 0; location[1] = 0;
+
+			// draw everything on the list once using ID to determine saturation
 			foreach (ShapeItem shapeItem in shapeList)
 			{
-				
 				shapeItem.Clear();
-				shapeItem.shape.location[0] = location[0];
-				shapeItem.shape.location[1] = location[1];
-				SKPath bezierPath = SKPath.ParseSvgPathData(shapeItem.shape.svgPath);
-				//SKColor fillColor = SKColor.Parse(shapeItem.shape.fill);
-				SKColor fillColor = SKColor.Parse("ff" + Convert.ToString(111111 * (shapeItem.ID + 1)));
-				SKPaint paintFill = new SKPaint() { Style = SKPaintStyle.Fill, Color = fillColor, TextSize = Convert.ToSingle(2 * shapeItem.shape.height / 3) };
-				SKColor strokeColor = SKColor.Parse(shapeItem.shape.stroke);
-				SKPaint paintStroke = new SKPaint() { Style = SKPaintStyle.Stroke, Color = strokeColor, TextSize = Convert.ToSingle(2 * shapeItem.shape.height / 3) };
-
+				shapeItem.Shape.Location[0] = location[0];
+				shapeItem.Shape.Location[1] = location[1];
+				shapeItem.Shape.CreateSvgPath(shapeItem.Shape);
+				SKPath bezierPath = SKPath.ParseSvgPathData(shapeItem.Shape.svgPath);
+				//SKColor fillColor = SKColor.Parse(shapeItem.Shape.fill);
+				SKColor fillColor = SKColor.Parse("ff" + Convert.ToString(999999 * (shapeItem.ID + 1)));
+				SKPaint paintFill = new SKPaint() { Style = SKPaintStyle.Fill, Color = fillColor, TextSize = Convert.ToSingle(2 * shapeItem.Shape.Height / 3) };
+				SKColor strokeColor = SKColor.Parse(shapeItem.Shape.stroke);
+				SKPaint paintStroke = new SKPaint() { Style = SKPaintStyle.Stroke, Color = strokeColor, TextSize = Convert.ToSingle(2 * shapeItem.Shape.Height / 3) };
 
 				canvas.DrawPath(bezierPath, paintFill);
 				canvas.DrawPath(bezierPath, paintStroke);
 				//SKPoint textPoint = new SKPoint(-150, 100);
 				SKPoint circlePoint = new SKPoint(0, 0);
 
-				SKRect rect = new SKRect(0, 0, Convert.ToSingle(shapeItem.shape.width), Convert.ToSingle(shapeItem.shape.height));
+				SKRect rect = new SKRect(0, 0, Convert.ToSingle(shapeItem.Shape.Width), Convert.ToSingle(shapeItem.Shape.Height));
 				canvas.DrawRect(rect, paintStroke);
 				canvas.DrawCircle(circlePoint, 2, paintFill);
-				//canvas.DrawText(listShape.shape.svgPath, textPoint, paintFill);
-				//Console.WriteLine(listShape.shape.svgPath);
-				location[1] += shapeItem.shape.height;
+				//canvas.DrawText(listShape.Shape.svgPath, textPoint, paintFill);
+				//Console.WriteLine(listShape.Shape.svgPath);
+				location[1] += shapeItem.Shape.Height;
 			}
 		}
 	}

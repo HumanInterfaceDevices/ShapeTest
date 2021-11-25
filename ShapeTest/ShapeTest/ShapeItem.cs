@@ -7,15 +7,16 @@ using Newtonsoft.Json;
 
 namespace ShapeTest
 {
-	
 	public class ShapeItem
 	{
 		[PrimaryKey, AutoIncrement]
-		public int ID { get; set; }
+		private int iD { get; set; }
+		public int ID { get => iD; set => iD = value; }
+		public Shape Shape { get => shape; set => shape = value; }
 		public List<int> parents = new List<int> { 0 };
 		public List<int> children = new List<int> { 0 };
 		public string content = "";
-		public Shape shape = new Shape();
+		private Shape shape = new Shape();
 		public void Clear()
 		{
 			parents.Clear();
@@ -25,34 +26,45 @@ namespace ShapeTest
 		}
 	}
 
-public class Shape
+	public class Shape
 	{
-		public double height;
-		public double width;
+		public int id;
+		private double height;
+		private double width;
 		public double scale;
-		public double[] location = new double[2];
+		private double[] location = new double[2];
 		public double[] margin = { 0, 0, 0, 0 };
 		public double[] padding = { 5, 5, 5, 5 };
-		public int facesLeft;
-		public int facesRight;
-		public double radiusLeft;
-		public double radiusRight;
+		private int facesLeft;
+		private int facesRight;
+		private double radiusLeft;
+		private double radiusRight;
 		public string svgPath;
 		public string fill;
 		public string stroke;
 		public List<byte> pattern = new List<byte>() { 0 };
 
+		public double[] Location { get => location; set => location = value; }
+		public double Height { get => height; set => height = value; }
+		public double Width { get => width; set => width = value; }
+		public int FacesLeft { get => facesLeft; set => facesLeft = value; }
+		public int FacesRight { get => facesRight; set => facesRight = value; }
+		public double RadiusLeft { get => radiusLeft; set => radiusLeft = value; }
+		public double RadiusRight { get => radiusRight; set => radiusRight = value; }
+		
+
+
 		public void Clear()
 		{
-			height = 50;
+			Height = 50;
 			width = 100;
 			location[0] = 0; location[1] = 0;
 			margin[0] = 2; margin[1] = 22; margin[2] = 2; margin[3] = 2;
 			padding[0] = 2; padding[1] = 2; padding[2] = 2; padding[3] = 2;
-			facesLeft = 8;
+			facesLeft = 3;
 			facesRight = 4;
-			radiusLeft = (height - (padding[1] + padding[3])) / 3;
-			radiusRight = (height - (padding[1] + padding[3])) / 3;
+			radiusLeft = (Height - (padding[1] + padding[3])) / 10;
+			radiusRight = (Height - (padding[1] + padding[3])) / 3;
 			svgPath = "";
 			//fill = "ffffffff";
 			stroke = "ff000000";
@@ -75,7 +87,7 @@ public class Shape
 				//canvas.GetLocalClipBounds(out bounds);
 				//shape.width = bounds.Width;
 			}
-			if (shape.height == 0)
+			if (shape.Height == 0)
 			{
 				//SKRect bounds;
 				//canvas.GetLocalClipBounds(out bounds);
@@ -86,8 +98,8 @@ public class Shape
 			FullArc arc = ArcPlot.ArcDivider(Math.PI, Math.PI / 2, shape.facesLeft + 1);
 			double halfArcCos = Math.Abs(Math.Cos(arc.Angle / 2));
 			//how far away from the laft and right sides is the start of the end pieces
-			float offsetLeft = Convert.ToSingle((((shape.height - (shape.padding[1] + shape.padding[3])) / 2) / halfArcCos) - (shape.radiusLeft / halfArcCos) + shape.radiusLeft);
-			float offsetRight = Convert.ToSingle((((shape.height - (shape.padding[1] + shape.padding[3])) / 2) / halfArcCos) - (shape.radiusRight / halfArcCos) + shape.radiusRight);
+			float offsetLeft = Convert.ToSingle((((shape.Height - (shape.padding[1] + shape.padding[3])) / 2) / halfArcCos) - (shape.radiusLeft / halfArcCos) + shape.radiusLeft);
+			float offsetRight = Convert.ToSingle((((shape.Height - (shape.padding[1] + shape.padding[3])) / 2) / halfArcCos) - (shape.radiusRight / halfArcCos) + shape.radiusRight);
 			string svgPath = " m " + (offsetLeft + shape.padding[0] + shape.location[0]) + " " + (shape.padding[1] + shape.location[1]);
 
 			float[,] pathPoint = new float[2, 4];
@@ -95,7 +107,7 @@ public class Shape
 			{
 				double radius = (j == 0) ? radiusLeft : radiusRight;
 				if (radius < 0) radius = 0;
-				double gap = (Math.Tan(arc.Angle / 2) * ((shape.height - (shape.padding[1] + shape.padding[3])) / 2)) - (Math.Tan(arc.Angle / 2) * radius); // gap = half of line between arcs
+				double gap = (Math.Tan(arc.Angle / 2) * ((shape.Height - (shape.padding[1] + shape.padding[3])) / 2)) - (Math.Tan(arc.Angle / 2) * radius); // gap = half of line between arcs
 				for (int i = 0; i < arc.Count; i++)
 				{
 					pathPoint = ArcPlot.ArcPointsArray(vectorCurrent, arc.Angle, radius);
