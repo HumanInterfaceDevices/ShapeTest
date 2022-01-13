@@ -32,12 +32,12 @@ namespace ShapeTest
 
 		private void CanvasView_PaintSurface(object sender, SKPaintSurfaceEventArgs e)
 		{
-			//Prepare canvas
+			// Prepare canvas
 			SKSurface surface = e.Surface;
 			SKCanvas canvas = surface.Canvas;
 			// canvas transforms
-			int width = e.Info.Width;
-			int height = e.Info.Height;
+			//int width = e.Info.Width;
+			//int height = e.Info.Height;
 			//canvas.Translate(width / 2, height / 2);
 			//canvas.Scale(Math.Min(width / 210f, height / 520f));
 			canvas.Scale(3);
@@ -47,7 +47,7 @@ namespace ShapeTest
 		private static void DrawScreen(SKCanvas canvas)
 		{
 			// test items
-			shapeList.Add(new ShapeItem());
+			if (shapeList.Count < 1) shapeList.Add(new ShapeItem());
 			//shapeList.Add(new ShapeItem());
 			//shapeList.Add(new ShapeItem());
 			//shapeList.Add(new ShapeItem());
