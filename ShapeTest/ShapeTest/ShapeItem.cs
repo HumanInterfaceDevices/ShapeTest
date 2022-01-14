@@ -9,14 +9,14 @@ namespace ShapeTest
 {
 	public class ShapeItem
 	{
-		[PrimaryKey, AutoIncrement]
+		[PrimaryKey, AutoIncrement] // DEBUG - what is it incrementing? not iD, which is what I want
 		private int iD { get; set; }
 		public int ID { get => iD; set => iD = value; }
-		public Shape Shape { get => shape; set => shape = value; }
 		public List<int> parents = new List<int> { 0 };
 		public List<int> children = new List<int> { 0 };
 		public string content = "";
 		private Shape shape = new Shape();
+		public Shape Shape { get => shape; set => shape = value; }
 		public void Clear()
 		{
 			parents.Clear();
@@ -59,14 +59,14 @@ namespace ShapeTest
 			Height = 50;
 			width = 100;
 			location[0] = 0; location[1] = 0;
-			margin[0] = 2; margin[1] = 22; margin[2] = 2; margin[3] = 2;
+			margin[0] = 2; margin[1] = 2; margin[2] = 2; margin[3] = 2;
 			padding[0] = 2; padding[1] = 2; padding[2] = 2; padding[3] = 2;
-			facesLeft = 3;
-			facesRight = 4;
-			radiusLeft = (Height - (padding[1] + padding[3])) / 10;
-			radiusRight = (Height - (padding[1] + padding[3])) / 3;
+			facesLeft = 2;
+			facesRight = 2;
+			radiusLeft = (Height - (padding[1] + padding[3])) / 4;
+			radiusRight = (Height - (padding[1] + padding[3])) / 4;
 			svgPath = "";
-			//fill = "ffffffff";
+			fill = "ff999999";
 			stroke = "ff000000";
 			pattern.Clear();
 			CreateSvgPath(this);
@@ -129,7 +129,7 @@ namespace ShapeTest
 				//pathPoint[0, 0] = Convert.ToSingle((Math.Cos(vectorCurrent) * gap) + (Math.Cos(vectorCurrent) * (shape.width - shape.height))); // gap after last curve
 				pathPoint[1, 0] = Convert.ToSingle(Math.Sin(vectorCurrent) * gap);
 				svgPath += " l " + pathPoint[0, 0] + " " + pathPoint[1, 0];
-				arc = ArcPlot.ArcDivider(Math.PI, Math.PI / 2, shape.facesRight + 1);
+				arc = ArcPlot.ArcDivider(Math.PI, Math.PI / 2, shape.facesRight + 1); // prepare for right side
 			}
 			svgPath += " z ";
 			shape.svgPath = svgPath;

@@ -46,11 +46,13 @@ namespace ShapeTest
 		}
 		private static void DrawScreen(SKCanvas canvas)
 		{
-			// test items
-			if (shapeList.Count < 1) shapeList.Add(new ShapeItem());
-			//shapeList.Add(new ShapeItem());
-			//shapeList.Add(new ShapeItem());
-			//shapeList.Add(new ShapeItem());
+
+			// test items - DEBUG - App can loop in debug creating additional ShapeItems. Using break points to pause the app can recreate this issue. minimum 2 instances are created without the if
+			int testQuantity = 5;
+			while (shapeList.Count < testQuantity)
+			{
+				shapeList.Add(new ShapeItem());
+			}
 
 			double[] location = new double[2];
 			location[0] = 0; location[1] = 0;
@@ -64,7 +66,7 @@ namespace ShapeTest
 				shapeItem.Shape.CreateSvgPath(shapeItem.Shape);
 				SKPath bezierPath = SKPath.ParseSvgPathData(shapeItem.Shape.svgPath);
 				//SKColor fillColor = SKColor.Parse(shapeItem.Shape.fill);
-				SKColor fillColor = SKColor.Parse("ff" + Convert.ToString(999999 * (shapeItem.ID + 1)));
+				SKColor fillColor = SKColor.Parse("ff" + Convert.ToString(999999 * (shapeItem.ID + 1))); // DEBUG - ShapeItem iD not working making this not work
 				SKPaint paintFill = new SKPaint() { Style = SKPaintStyle.Fill, Color = fillColor, TextSize = Convert.ToSingle(2 * shapeItem.Shape.Height / 3) };
 				SKColor strokeColor = SKColor.Parse(shapeItem.Shape.stroke);
 				SKPaint paintStroke = new SKPaint() { Style = SKPaintStyle.Stroke, Color = strokeColor, TextSize = Convert.ToSingle(2 * shapeItem.Shape.Height / 3) };
