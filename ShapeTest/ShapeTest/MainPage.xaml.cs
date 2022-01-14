@@ -47,7 +47,9 @@ namespace ShapeTest
 		private static void DrawScreen(SKCanvas canvas)
 		{
 
-			// test items - DEBUG - App can loop in debug creating additional ShapeItems. Using break points to pause the app can recreate this issue. minimum 2 instances are created without the if
+			// test items - DEBUG - App can loop in debug creating additional ShapeItems.
+			// Using break points to pause the app can recreate this issue.
+			// Minimum 2 instances are created without while or if statements
 			int testQuantity = 5;
 			while (shapeList.Count < testQuantity)
 			{
@@ -58,6 +60,7 @@ namespace ShapeTest
 			location[0] = 0; location[1] = 0;
 
 			// draw everything on the list once using ID to determine saturation
+
 			foreach (ShapeItem shapeItem in shapeList)
 			{
 				shapeItem.Clear();
@@ -66,7 +69,7 @@ namespace ShapeTest
 				shapeItem.Shape.CreateSvgPath(shapeItem.Shape);
 				SKPath bezierPath = SKPath.ParseSvgPathData(shapeItem.Shape.svgPath);
 				//SKColor fillColor = SKColor.Parse(shapeItem.Shape.fill);
-				SKColor fillColor = SKColor.Parse("ff" + Convert.ToString(999999 * (shapeItem.ID + 1))); // DEBUG - ShapeItem iD not working making this not work
+				SKColor fillColor = SKColor.Parse("ff" + Convert.ToString(222222 * (shapeItem.ID + 1))); // DEBUG - ShapeItem iD not working making this not work
 				SKPaint paintFill = new SKPaint() { Style = SKPaintStyle.Fill, Color = fillColor, TextSize = Convert.ToSingle(2 * shapeItem.Shape.Height / 3) };
 				SKColor strokeColor = SKColor.Parse(shapeItem.Shape.stroke);
 				SKPaint paintStroke = new SKPaint() { Style = SKPaintStyle.Stroke, Color = strokeColor, TextSize = Convert.ToSingle(2 * shapeItem.Shape.Height / 3) };
@@ -80,7 +83,6 @@ namespace ShapeTest
 				canvas.DrawRect(rect, paintStroke);
 				canvas.DrawCircle(circlePoint, 2, paintFill);
 				//canvas.DrawText(listShape.Shape.svgPath, textPoint, paintFill);
-				//Console.WriteLine(listShape.Shape.svgPath);
 				location[1] += shapeItem.Shape.Height;
 			}
 		}
